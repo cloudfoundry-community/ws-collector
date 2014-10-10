@@ -22,3 +22,7 @@ _testmain.go
 *.exe
 *.test
 *.prof
+
+bin/node_modules/
+Godeps/
+ws-collector

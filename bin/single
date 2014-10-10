@@ -1,0 +1,43 @@
+#!/usr/bin/env node
+
+/*
+    Variables
+*/
+
+var protocal="wss"
+var endpoint = "ws-collector-urinogenital-teammate.54.68.64.168.xip.io"
+var port = 4443
+var path = "/ws"
+var token = "dGVzdC11c2VyOnRlc3QtcGFzc3dvcmQ="
+var msg = { 'subject': 'test', 'body': 'long message' }
+
+/*
+    Token
+    echo -n 'password' | openssl base64
+*/
+
+/*
+    Self-signed certs
+*/
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
+
+
+/*
+    Client
+*/
+var WebSocket = require('ws');
+var opts = { headers: { 'Authorization': 'Bearer ' + token } };
+var uri = protocal + '://' + endpoint + ':' + port + path;
+var str = JSON.stringify(msg);
+var ws = new WebSocket(uri, opts);
+ws.on('open', function() {
+    console.log('target: %s', uri);
+    ws.send(str, function(err) {
+        if (err != null) {
+            console.log('error: %s', err);
+        }else{
+            console.log('sent: %s', str);
+        }
+        process.exit(1);
+    });
+});

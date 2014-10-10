@@ -1,0 +1,41 @@
+#!/usr/bin/env node
+
+/*
+    Variables
+*/
+
+var protocal="ws"
+var endpoint = "127.0.0.1"
+var port = 8080
+var path = "/ws"
+var token = "dGVzdC11c2VyOnRlc3QtcGFzc3dvcmQ="
+var msg = { 'subject': 'test', 'body': 'long message', 'count': 0 }
+
+/*
+    Token
+    echo -n 'password' | openssl base64
+*/
+
+/*
+    Self-signed certs
+*/
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
+
+
+/*
+    Client
+*/
+var WebSocket = require('ws');
+var opts = { headers: { 'Authorization': 'Bearer ' + token } };
+var ws = new WebSocket(protocal + '://' + endpoint + ':' + port + path, opts);
+ws.on('open', function() {
+    var i = 0, c = 50000
+    console.log('starting...');
+    while(true) {
+        msg.count = i++;
+        ws.send(JSON.stringify(msg), function(err) {
+            if (err != null) console.log('error: %s', err);
+        });
+        if (i % c == 0) console.log(i);
+    }
+});

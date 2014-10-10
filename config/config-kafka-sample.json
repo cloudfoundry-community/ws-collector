@@ -1,0 +1,20 @@
+{
+   "id": "c1",
+   "trace": true,
+   "server": {
+    "root": "/ws",
+    "host": "127.0.0.1",
+    "port": 8080,
+    "token":""
+    },
+   "backend": {
+    "type":"kafka",
+    "uri":"localhost:9092",
+    "args": {
+        "topic": "jobs",
+        "partition": 0,
+        "buffer_time_in_sec": 3,
+        "timeout_in_sec": 3
+    }
+   }
+}

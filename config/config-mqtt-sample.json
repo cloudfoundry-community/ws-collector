@@ -1,0 +1,18 @@
+{
+   "id": "c1",
+   "trace": true,
+   "server": {
+      "root": "/ws",
+      "host": "127.0.0.1",
+      "port": 8080,
+      "token": ""
+   },
+   "backend": {
+      "type": "mqtt",
+      "uri": "tcp://test.mosquitto.org:1883",
+      "args": {
+         "topic": "jobs",
+         "qos": 0
+      }
+   }
+}

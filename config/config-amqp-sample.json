@@ -1,0 +1,20 @@
+{
+   "id": "c1",
+   "trace": true,
+   "server": {
+    "root": "/ws",
+    "host": "127.0.0.1",
+    "port": 8080,
+    "token":""
+    },
+   "backend": {
+    "type":"amqp",
+    "uri":"amqp://guest:guest@localhost:5672/",
+    "args": {
+        "service_name": "queue",
+        "exchange": "messages",
+        "exchange_type": "direct",
+        "route": "messages"
+    }
+   }
+}
